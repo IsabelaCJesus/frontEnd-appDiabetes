@@ -1,16 +1,16 @@
 ion-content {
-  --background: url('../../assets/diabetes7.png') no-repeat center center / cover;
+  --background: url('../../assets/diabetes3.jpeg') no-repeat center center / cover;
 }
 
 .botaoIniciar{
-  margin-top: 100px;
+  margin-top: 90px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .botaoInfo{
-  margin-top: 180px;
+  margin-top: 190px;
   display: flex;
   justify-content: right;
   align-items: right;
@@ -19,25 +19,25 @@ ion-content {
 .titulo{
   margin-top: 90px;
   text-align: center;
-  color: rgb(10, 10, 10);
+  color: rgb(6, 5, 58);
   font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 50px;
   font-style: italic;
 }
 
 .descricao{
-  margin-top: 40px;
+  margin-top: 50px;
   text-align: center;
-  color: rgb(12, 11, 11);
+  color: rgb(14, 7, 80);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 22px;
   font-style: bold;
 }
 
 .descricao2{
-  margin-top: 100px;
+  margin-top: 40px;
   text-align: center;
   color: rgb(13, 14, 12);
-  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-size: 18px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 20px;
 }

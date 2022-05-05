@@ -11,17 +11,21 @@
     verificar seu risco de diabetes
   </div>
 
-  <div class="botaoIniciar">
-    <ion-button size="large" [routerLink]="['/calcular-diabetes']" routerDirection="forward">Iniciar</ion-button>
+  <div  class="botaoIniciar">
+    <ion-button color="tertiary" [routerLink]="['/calcular-diabetes']" routerDirection="forward">INICIAR</ion-button>
   </div>
 
   <div class="descricao2">
-    Bem vindo ao aplicativo "nomeApp"! <br>
-    Através dele você poderá cadastrar usuários <br>
-    e empresas. Também poderá atualizar seus dados.
+    Bem vindo ao aplicativo  DiabetesCheck! <br>
+    Ao informar seus dados você poderá <br>
+    verificar seu risco de ter diabetes.<br>
+    Responder com sinceridade  a todos os <br> 
+    itens é fundamental para um resultado <br> 
+    correto.<br>
+
   </div>
 
   <div class="botaoInfo">
-    <ion-button (click)="maisInfo()">Mais informações</ion-button>
+   <ion-router-link (click)="maisInfo()" style="color: rgb(19, 10, 134);">Mais informações</ion-router-link>
   </div>
 </ion-content>

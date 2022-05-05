@@ -4,9 +4,12 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
+  <br>
+  <h3 style="text-align: center;"> Informe os seguintes dados:</h3>
+  <br>
   <ion-list>
     <ion-item>
-      <ion-label position="stacked">Idade:*</ion-label>
+      <ion-label position="stacked" >Idade:*</ion-label>
       <ion-input name="idade" [(ngModel)]="idade" type="number"> </ion-input>
     </ion-item>
     <ion-item>
@@ -38,7 +41,7 @@
       <ion-input name="escolaridade" [(ngModel)]="escolaridade" type="text"> </ion-input>
     </ion-item>
   </ion-list>
-
-  <ion-button type="submit" expand="block" color="success" (click)="calcularDiabetes()">Calcular</ion-button>
-  <ion-button type="button" expand="block" color="danger"  [routerLink]="['/home']" routerDirection="forward"> Cancelar </ion-button>
+  <br>
+  <ion-button type="submit" color="success" (click)="calcularDiabetes()">Calcular</ion-button>
+  <ion-button type="button" color="danger"  [routerLink]="['/home']" routerDirection="forward"> Cancelar </ion-button>
 </ion-content>
