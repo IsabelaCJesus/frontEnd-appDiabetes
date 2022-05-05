@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Dados pessoais</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Idade:*</ion-label>
+      <ion-input name="idade" [(ngModel)]="idade" type="number"> </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Altura:*</ion-label>
+      <ion-input name="altura" [(ngModel)]="altura" type="text"> </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Peso:*</ion-label>
+      <ion-input name="peso" [(ngModel)]="peso" type="text"> </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Triglicerídeos:*</ion-label>
+      <ion-input name="triglicerideos" [(ngModel)]="triglicerideos" type="text"> </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Tempo Evolutivo:*</ion-label>
+      <ion-input name="tempoEvolutivo" [(ngModel)]="tempoEvolutivo" type="text"> </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Circunferência Abdominal:*</ion-label>
+      <ion-input name="circunferenciaAbdominal" [(ngModel)]="circunferenciaAbdominal" type="text"> </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Renda:*</ion-label>
+      <ion-input name="renda" [(ngModel)]="renda" type="text"> </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Escolaridade:*</ion-label>
+      <ion-input name="escolaridade" [(ngModel)]="escolaridade" type="text"> </ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button type="submit" expand="block" color="success" (click)="calcularDiabetes()">Calcular</ion-button>
+  <ion-button type="button" expand="block" color="danger"  [routerLink]="['/home']" routerDirection="forward"> Cancelar </ion-button>
+</ion-content>
