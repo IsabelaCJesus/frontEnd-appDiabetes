@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController} from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { DiabetesFuzzyService, Resultado } from '../services/diabetes-fuzzy.service';
 
 @Component({
   selector: 'app-calcular-diabetes',
@@ -16,17 +18,20 @@ export class CalcularDiabetesPage implements OnInit {
   renda: string = "";
   escolaridade: string = "";
 
+  resultado: Observable<Resultado>;
+
   constructor(
-    
-    private alertController: AlertController
+    private alertController: AlertController,
+    private diabetesFuzzyService: DiabetesFuzzyService
   ) { }
 
   ngOnInit() {}
 
   async calcularDiabetes(){
-    if(await this.validarDados()){
-
-    }
+   // if(await this.validarDados()){
+      this.resultado = this.diabetesFuzzyService.list();
+   // }
+    this.showAlert("Seu risco é: " + (await this.resultado.toPromise()).resultado);
   }
   
   validarDados() : boolean{
