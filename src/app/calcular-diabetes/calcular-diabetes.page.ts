@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController} from '@ionic/angular';
 import { Observable } from 'rxjs';
-import { DiabetesFuzzyService, Resultado } from '../services/diabetes-fuzzy.service';
+import { DiabetesFuzzyService, Dados } from '../services/diabetes-fuzzy.service';
 
 @Component({
   selector: 'app-calcular-diabetes',
@@ -18,7 +18,18 @@ export class CalcularDiabetesPage implements OnInit {
   renda: string = "";
   escolaridade: string = "";
 
-  resultado: Observable<Resultado>;
+  resultado: Observable<String>;
+
+  dados: Dados = {
+    idade: "",
+    altura: "",
+    peso: "",
+    triglicerideos: "",
+    tempoEvolutivo: "",
+    circunferenciaAbdominal: "",
+    renda: "",
+    escolaridade: "",
+  };
 
   constructor(
     private alertController: AlertController,
@@ -27,11 +38,24 @@ export class CalcularDiabetesPage implements OnInit {
 
   ngOnInit() {}
 
-  async calcularDiabetes(){
+  async calcularDiabetes() {
    // if(await this.validarDados()){
-      this.resultado = this.diabetesFuzzyService.list();
+    this.dados = { 
+      idade: this.idade,
+      altura: this.altura,
+      peso: this.peso,
+      triglicerideos: this.triglicerideos,
+      tempoEvolutivo: this.tempoEvolutivo,
+      circunferenciaAbdominal: this.circunferenciaAbdominal,
+      renda: this.renda,
+      escolaridade: this.escolaridade
+     }
+      console.log(this.dados);
+      this.diabetesFuzzyService.calcular(this.dados).subscribe(result => console.log(result));
    // }
-    this.showAlert("Seu risco é: " + (await this.resultado.toPromise()).resultado);
+
+    this.showAlert("Seu risco é: " + "1")
+    //(await this.resultado.toPromise()));
   }
   
   validarDados() : boolean{
