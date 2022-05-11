@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 export interface Dados {
-  idade: string;
-  altura: string;
-  peso: string;
-  triglicerideos: string;
-  tempoEvolutivo: string;
-  circunferenciaAbdominal: string;
-  renda: string;
-  escolaridade: string;
+  idade: number;
+  altura: number;
+  peso: number;
+  triglicerideos: number;
+  tempoEvolutivo: number;
+  circunferenciaAbdominal: number;
+  renda: number;
+  escolaridade: number;
 }
 
 @Injectable({

@@ -9,26 +9,26 @@ import { DiabetesFuzzyService, Dados } from '../services/diabetes-fuzzy.service'
   styleUrls: ['./calcular-diabetes.page.scss'],
 })
 export class CalcularDiabetesPage implements OnInit {
-  idade: string = "";
-  altura: string = "";
-  peso: string = "";
-  triglicerideos: string = "";
-  tempoEvolutivo: string = "";
-  circunferenciaAbdominal: string = "";
-  renda: string = "";
-  escolaridade: string = "";
+  idade: number;
+  altura: number;
+  peso: number;
+  triglicerideos: number;
+  tempoEvolutivo: number;
+  circunferenciaAbdominal: number;
+  renda: number;
+  escolaridade: number;
 
   resultado: Observable<String>;
 
   dados: Dados = {
-    idade: "",
-    altura: "",
-    peso: "",
-    triglicerideos: "",
-    tempoEvolutivo: "",
-    circunferenciaAbdominal: "",
-    renda: "",
-    escolaridade: "",
+    idade: 0,
+    altura:  0,
+    peso:  0,
+    triglicerideos: 0,
+    tempoEvolutivo: 0,
+    circunferenciaAbdominal: 0,
+    renda: 0,
+    escolaridade: 0
   };
 
   constructor(
@@ -39,48 +39,50 @@ export class CalcularDiabetesPage implements OnInit {
   ngOnInit() {}
 
   async calcularDiabetes() {
-   // if(await this.validarDados()){
-    this.dados = { 
-      idade: this.idade,
-      altura: this.altura,
-      peso: this.peso,
-      triglicerideos: this.triglicerideos,
-      tempoEvolutivo: this.tempoEvolutivo,
-      circunferenciaAbdominal: this.circunferenciaAbdominal,
-      renda: this.renda,
-      escolaridade: this.escolaridade
-     }
-      console.log(this.dados);
-      this.diabetesFuzzyService.calcular(this.dados).subscribe(result => console.log(result));
-   // }
+    if(await this.validarDados()){
 
-    this.showAlert("Seu risco é: " + "1")
-    //(await this.resultado.toPromise()));
+      this.dados = { 
+        idade: this.idade,
+        altura: this.altura,
+        peso: this.peso,
+        triglicerideos: this.triglicerideos,
+        tempoEvolutivo: this.tempoEvolutivo,
+        circunferenciaAbdominal: this.circunferenciaAbdominal,
+        renda: this.renda,
+        escolaridade: this.escolaridade
+      }
+
+      console.log(this.dados);
+      this.diabetesFuzzyService.calcular(this.dados).subscribe(result =>
+        this.showAlert("Seu risco é: " + result)
+      );
+
+    }
   }
   
   validarDados() : boolean{
-    if(this.idade == ""){
+    if(this.idade == 0){
       this.showAlert("Preencha o campo Idade!");
       return false;
-    }else if (this.altura == ""){
+    }else if (this.altura == 0){
       this.showAlert("Preencha o campo Altura!");
       return false;
-    }else if (this.peso == ""){
+    }else if (this.peso  == 0){
       this.showAlert("Preencha o campo Peso!");
       return false;
-    }else if (this.triglicerideos == ""){
+    }else if (this.triglicerideos  == 0){
       this.showAlert("Preencha o campo Triglicerideos!");
       return false;
-    }else if (this.tempoEvolutivo == ""){
+    }else if (this.tempoEvolutivo  == 0){
       this.showAlert("Preencha o campo Tempo Evolutivo!");
       return false;
-    }else if (this.circunferenciaAbdominal == ""){
+    }else if (this.circunferenciaAbdominal  == 0){
       this.showAlert("Preencha o campo Circunferência Abdominal!");
       return false;
-    }else if (this.renda == ""){
-      this.showAlert("Preencha o campo Tempo Evolutivo!");
+    }else if (this.renda == 0){
+      this.showAlert("Preencha o campo Renda!");
       return false;
-    }else if (this.escolaridade == ""){
+    }else if (this.escolaridade == 0){
       this.showAlert("Preencha o campo Escolaridade!");
       return false;
     }
