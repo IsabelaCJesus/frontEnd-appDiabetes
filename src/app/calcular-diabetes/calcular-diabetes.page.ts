@@ -52,7 +52,6 @@ export class CalcularDiabetesPage implements OnInit {
         escolaridade: this.escolaridade
       }
 
-      console.log(this.dados);
       this.diabetesFuzzyService.calcular(this.dados).subscribe(result =>
         this.showAlert("Seu risco é: " + result)
       );
