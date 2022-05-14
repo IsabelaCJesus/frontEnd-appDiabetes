@@ -1,57 +1,30 @@
 <ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Enfermeiro</ion-title>
+  </ion-toolbar>
 </ion-header>
-
-<ion-content [fullscreen]="true">
-  <table> 
-    <tr style="height: 150px;">
-      <td>
-        <div class="titulo">DiabetesCheck</div>
-      </td>
-    </tr>
-
-    <tr style="height: 90px;">
-      <td>
-        <div class="descricao"> Um app para você <br> 
-          verificar seu risco de diabetes
-        </div>
-      </td>
-    </tr>
-
-    <tr style="height: 150px;">
-      <td>
-        <div class="botaoIniciar">
-          <ion-button color="tertiary" size="large" [routerLink]="['/calcular-diabetes']" routerDirection="forward">INICIAR</ion-button>
-        </div>
-      </td>
-    </tr>
-
-    <tr style="height: 250px;">
-      <td>
-        <div class="descricao2">
-          Bem vindo ao aplicativo  DiabetesCheck! 
-          Ao informar seus dados você poderá 
-          verificar seu risco de ter diabetes
-          através de dados como: idade, altura, 
-          peso, triglicerídeos, tempo evolutivo,
-          circunferência abdominal, renda e
-          escolaridade. Responder com sinceridade  
-          a todos os itens é fundamental para 
-          receber um resultado correto.
-        </div>
-      </td>
-    </tr>
-
-    <tr style="height: 220px;">
-      <td>
-      </td>
-    </tr>
-
-    <tr style="height: 20px;">
-      <td>
-        <div class="botaoInfo">
-          <ion-router-link (click)="maisInfo()" style="color: rgb(19, 10, 134);">Mais informações</ion-router-link>
-        </div>
-      </td>
-    </tr>
-  </table>
-</ion-content>
+<ion-menu side="start" content-id="main">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-menu-toggle>
+        <ion-item [routerLink]="['/home/pacientes']">Pacientes</ion-item>
+      </ion-menu-toggle>
+      
+      <!--<ion-menu-toggle>
+        <ion-item [routerLink]="['/home/alterar-senha-pessoa']">Alterar senha</ion-item>
+      </ion-menu-toggle>!-->
+      <ion-menu-toggle>
+        <ion-item (click)="logout()">Logout</ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-router-outlet id="main"></ion-router-outlet>

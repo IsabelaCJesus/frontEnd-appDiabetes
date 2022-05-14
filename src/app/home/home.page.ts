@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,18 +11,17 @@ import { AlertController } from '@ionic/angular';
 export class HomePage {
 
   constructor(
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private authService: AuthService,
+    private router: Router
+ 
     ) { }
 
   ngOnInit() {
   }
 
-  async maisInfo(){
-    const alert = await this.alertCtrl.create({
-      header: 'Mais informações',
-      message: "Este app foi desenvolvido por Isabela Jesus",
-      buttons: ['OK']
-    });
-    await alert.present();
+  async logout() {
+    await this.authService.logout();
+    this.router.navigateByUrl('/', { replaceUrl: true });
   }
 }
