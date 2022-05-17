@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 export interface Dados {
+  idPaciente: string;
+  coren: string,
   idade: number;
   altura: number;
   peso: number;

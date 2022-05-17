@@ -20,8 +20,8 @@ const routes: Routes = [
     import('./inicio/inicio.module').then((m) => m.InicioPageModule),
   },
   {
-    path: 'calcular-diabetes',
-    loadChildren: () => import('./calcular-diabetes/calcular-diabetes.module').then( m => m.CalcularDiabetesPageModule),
+    path: 'realizar-lancamento',
+    loadChildren: () => import('./realizar-lancamento/realizar-lancamento.module').then( m => m.RealizarLancamentoPageModule),
     ...canActivate(redirectUnauthorizedToLogin)
   },
   {

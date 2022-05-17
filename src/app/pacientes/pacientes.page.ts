@@ -40,6 +40,11 @@ export class PacientesPage implements OnInit {
           type: 'text',
         },
         {
+          name: 'coren',
+          placeholder: 'Coren',
+          type: 'text',
+        },
+        {
           name: 'dataNascimento',
           placeholder: 'Data de Nascimento',
           type: 'text'
@@ -50,8 +55,8 @@ export class PacientesPage implements OnInit {
           type: 'text'
         },
         {
-          name: 'endereco',
-          placeholder: 'Endereço',
+          name: 'email',
+          placeholder: 'Email',
           type: 'text'
         },
       ],
@@ -62,8 +67,8 @@ export class PacientesPage implements OnInit {
         }, {
           text: 'Salvar',
           handler: res => {
-            this.dataPacienteService.addPaciente({ nome: res.nome, dataNascimento: res.dataNascimento, 
-            telefone: res.telefone, endereco: res.endereco });
+            this.dataPacienteService.addPaciente({ nome: res.nome, coren: res.coren, dataNascimento: res.dataNascimento, 
+            telefone: res.telefone, email: res.email });
           }
         }
       ]

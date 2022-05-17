@@ -12,10 +12,10 @@ const routes: Routes = [
         path: 'pacientes',
         loadChildren: () => import('../pacientes/pacientes.module').then(m => m.PacientesPageModule),
       },
-      /*{
-        path: 'alterar-senha-pessoa',
-        loadChildren: () => import('../alterar-senha-pessoa/alterar-senha-pessoa.module').then(m => m.AlterarSenhaPessoaPageModule),
-      },*/
+      {
+        path: 'realizar-lancamento',
+        loadChildren: () => import('../realizar-lancamento/realizar-lancamento.module').then(m => m.RealizarLancamentoPageModule),
+      },
     ]
   },
 ];

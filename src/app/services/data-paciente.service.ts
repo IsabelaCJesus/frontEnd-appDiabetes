@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Firestore, query, collection, collectionData, doc, docData, addDoc, deleteDoc, updateDoc } from '@angular/fire/firestore';
 import { orderBy } from 'firebase/firestore';
 import { Observable } from 'rxjs';
-import { DataPessoaService } from './data-pessoa.service';
 
 export interface Paciente {
   id?: string;
   nome: string;
+  coren: string;
   dataNascimento: string;
   telefone: string;
-  endereco: string;
+  email: string;
 }
 
 @Injectable({
@@ -41,6 +41,6 @@ export class DataPacienteService {
  
   updatePaciente(paciente: Paciente) {
     const pacienteDocRef = doc(this.firestore, `pacientes/${paciente.id}`);
-    return updateDoc(pacienteDocRef, { nome: paciente.nome, dataNascimento: paciente.dataNascimento, telefone: paciente.telefone, endereco: paciente.endereco});
+    return updateDoc(pacienteDocRef, { nome: paciente.nome, coren: paciente.coren, dataNascimento: paciente.dataNascimento, telefone: paciente.telefone, email: paciente.email});
   }
 }

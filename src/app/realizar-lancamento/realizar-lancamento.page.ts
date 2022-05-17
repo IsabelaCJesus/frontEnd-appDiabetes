@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
 import { AlertController} from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { DiabetesFuzzyService, Dados } from '../services/diabetes-fuzzy.service';
+import { DataPacienteService, Paciente } from '../services/data-paciente.service';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-calcular-diabetes',
-  templateUrl: './calcular-diabetes.page.html',
-  styleUrls: ['./calcular-diabetes.page.scss'],
+  selector: 'app-realizar-lancamento',
+  templateUrl: './realizar-lancamento.page.html',
+  styleUrls: ['./realizar-lancamento.page.scss'],
 })
-export class CalcularDiabetesPage implements OnInit {
+export class RealizarLancamentoPage implements OnInit {
+  idPaciente: string;
+  coren: string;
+  data: Date;
   idade: number;
   altura: number;
   peso: number;
@@ -17,10 +21,13 @@ export class CalcularDiabetesPage implements OnInit {
   circunferenciaAbdominal: number;
   renda: number;
   escolaridade: number;
+  paciente: string = "";
 
   resultado: Observable<String>;
 
   dados: Dados = {
+    idPaciente: "",
+    coren: "",
     idade: 0,
     altura:  0,
     peso:  0,
@@ -31,17 +38,31 @@ export class CalcularDiabetesPage implements OnInit {
     escolaridade: 0
   };
 
+  pacientes: Paciente[] = [];
+
   constructor(
     private alertController: AlertController,
-    private diabetesFuzzyService: DiabetesFuzzyService
-  ) { }
+    private diabetesFuzzyService: DiabetesFuzzyService,
+    private dataPacienteService: DataPacienteService,  
+    private cd: ChangeDetectorRef
+  ) { 
+    this.dataPacienteService.getPacientes().subscribe(res => {
+      this.pacientes = res;
+      this.cd.detectChanges();
+    });
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    var data= new Date();
+    this.data = data;
+  }
 
   async calcularDiabetes() {
     if(await this.validarDados()){
 
       this.dados = { 
+        idPaciente : this.paciente,
+        coren: this.coren,
         idade: this.idade,
         altura: this.altura,
         peso: this.peso,
@@ -52,6 +73,7 @@ export class CalcularDiabetesPage implements OnInit {
         escolaridade: this.escolaridade
       }
 
+      
       this.diabetesFuzzyService.calcular(this.dados).subscribe(result =>
         this.showAlert("Seu risco é: " + result)
       );
@@ -60,7 +82,14 @@ export class CalcularDiabetesPage implements OnInit {
   }
   
   validarDados() : boolean{
-    if(this.idade == 0){
+    //console.log(this.paciente);
+    if(this.paciente == ""){
+      this.showAlert("Preencha o campo Paciente!");
+      return false;
+    }else if (this.coren == ""){
+      this.showAlert("Preencha o campo Coren!");
+      return false;
+    }else if(this.idade == 0){
       this.showAlert("Preencha o campo Idade!");
       return false;
     }else if (this.altura == 0){
