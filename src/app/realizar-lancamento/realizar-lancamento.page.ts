@@ -1,8 +1,8 @@
 import { AlertController} from '@ionic/angular';
-import { Observable } from 'rxjs';
-import { DiabetesFuzzyService, Dados } from '../services/diabetes-fuzzy.service';
+import { DataLancamentoService, Dados } from '../services/data-lancamento.service';
 import { DataPacienteService, Paciente } from '../services/data-paciente.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-realizar-lancamento',
@@ -23,9 +23,9 @@ export class RealizarLancamentoPage implements OnInit {
   escolaridade: number;
   paciente: string = "";
 
-  resultado: Observable<String>;
 
   dados: Dados = {
+    data: new Date(),
     idPaciente: "",
     coren: "",
     idade: 0,
@@ -42,9 +42,10 @@ export class RealizarLancamentoPage implements OnInit {
 
   constructor(
     private alertController: AlertController,
-    private diabetesFuzzyService: DiabetesFuzzyService,
+    private DataLancamentoService: DataLancamentoService,
     private dataPacienteService: DataPacienteService,  
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private router: Router
   ) { 
     this.dataPacienteService.getPacientes().subscribe(res => {
       this.pacientes = res;
@@ -53,14 +54,14 @@ export class RealizarLancamentoPage implements OnInit {
   }
 
   ngOnInit() {
-    var data= new Date();
-    this.data = data;
+    this.data = new Date();
   }
 
   async calcularDiabetes() {
     if(await this.validarDados()){
 
       this.dados = { 
+        data: this.data,
         idPaciente : this.paciente,
         coren: this.coren,
         idade: this.idade,
@@ -73,16 +74,21 @@ export class RealizarLancamentoPage implements OnInit {
         escolaridade: this.escolaridade
       }
 
+      console.log(this.dados);
       
-      this.diabetesFuzzyService.calcular(this.dados).subscribe(result =>
+      this.DataLancamentoService.calcularInterventionGroup(this.dados).subscribe(result =>
         this.showAlert("Seu risco é: " + result)
       );
-
-    }
+        
+      this.DataLancamentoService.calcularComparativeGroup(this.dados).subscribe(result =>
+        this.showAlert("Seu risco comparativo é: " + result)
+      );
+   }
+    this.DataLancamentoService.addLancamento(this.dados);
+    this.router.navigateByUrl('/home/resultado', { replaceUrl: true });
   }
   
   validarDados() : boolean{
-    //console.log(this.paciente);
     if(this.paciente == ""){
       this.showAlert("Preencha o campo Paciente!");
       return false;

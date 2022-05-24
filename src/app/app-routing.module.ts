@@ -49,6 +49,22 @@ const routes: Routes = [
     path: 'modal-paciente',
     loadChildren: () => import('./modal-paciente/modal-paciente.module').then( m => m.ModalPacientePageModule)
   },
+  {
+    path: 'resultado',
+    loadChildren: () => import('./resultado/resultado.module').then( m => m.ResultadoPageModule)
+  },
+  {
+    path: 'visualizar-historico',
+    loadChildren: () => import('./visualizar-historico/visualizar-historico.module').then( m => m.VisualizarHistoricoPageModule)
+  },
+  {
+    path: 'modal-lancamento',
+    loadChildren: () => import('./modal-lancamento/modal-lancamento.module').then( m => m.ModalLancamentoPageModule)
+  },
+  {
+    path: 'alterar-senha',
+    loadChildren: () => import('./alterar-senha/alterar-senha.module').then( m => m.AlterarSenhaPageModule)
+  },
 ];
 
 @NgModule({

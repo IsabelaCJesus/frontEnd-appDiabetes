@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="primary">
+   
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <div *ngIf="lancamento">
+      <ion-item>
+        <ion-label position="stacked" ></ion-label>
+        <ion-text-area [(ngModel)]="lancamento.data"></ion-text-area>
+      </ion-item>
+
+      <ion-item *ngIf="pacientes && pacientes.length > 0 && lancamento">
+        <ion-select placeholder="Selecione o paciente *" [value]="lancamento.paciente" [(ngModel)]="paciente">
+        <ion-select-option *ngFor="let paciente of pacientes" [value]="paciente.id" style="text-align: center">{{paciente.nome}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" >Coren:*</ion-label>
+        <ion-text-area [(ngModel)]="lancamento.coren" ></ion-text-area>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked" >Idade:*</ion-label>
+        <ion-text-area [(ngModel)]="lancamento.idade"></ion-text-area>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Altura:*</ion-label>
+        <ion-text-area [(ngModel)]="lancamento.altura"></ion-text-area>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Peso:*</ion-label>
+        <ion-text-area [(ngModel)]="lancamento.peso"></ion-text-area>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Triglicerídeos:*</ion-label>
+        <ion-text-area [(ngModel)]="lancamento.triglicerideos"></ion-text-area>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Tempo Evolutivo:*</ion-label>
+        <ion-text-area [(ngModel)]="lancamento.tempoEvolutivo"></ion-text-area>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Circunferência Abdominal:*</ion-label>
+        <ion-text-area [(ngModel)]="lancamento.circunferenciaAbdominal"></ion-text-area>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Renda:*</ion-label>
+        <ion-text-area [(ngModel)]="lancamento.renda"></ion-text-area>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Escolaridade:*</ion-label>
+        <ion-text-area [(ngModel)]="lancamento.escolaridade"></ion-text-area>
+      </ion-item>
+    </ion-list>
+  </div>
+  <br>
+  
+  <ion-button expand="block" color="success" (click)="atualizarLancamento()">
+    <ion-icon name="save" slot="start"></ion-icon>
+    Atualizar
+  </ion-button>
+  <ion-button expand="block" color="danger" (click)="deletarLancamento()">
+    <ion-icon name="trash" slot="start"></ion-icon>
+    Excluir
+  </ion-button>
+
+</ion-content>

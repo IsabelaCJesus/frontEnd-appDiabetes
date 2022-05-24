@@ -4,54 +4,47 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
-
   <ion-list>
+    <!--<ion-item>
+      <ion-label position="stacked" ></ion-label>
+      <ion-input name="data" [(ngModel)]="data" type="hidden" disabled="true"> </ion-input>
+    </ion-item>-->
     <ion-item>
       <ion-select placeholder="Selecione o paciente *" [(ngModel)]="paciente">
         <ion-select-option *ngFor="let paciente of pacientes" [value]="paciente.id" style="text-align: center">{{paciente.nome}}</ion-select-option>
       </ion-select>
     </ion-item>
-    
     <ion-item>
-      <ion-label position="stacked" >Coren:*</ion-label>
+      <ion-label position="stacked">Coren:*</ion-label>
       <ion-input name="coren" [(ngModel)]="coren" type="text"> </ion-input>
     </ion-item>
-    
     <ion-item>
-      <ion-label position="stacked" >Data:*</ion-label>
-      <ion-input name="data" [(ngModel)]="data" type="text" disabled="true"> </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked" >Idade:*</ion-label>
-      <ion-input name="idade" [(ngModel)]="idade" type="number"> </ion-input>
+      <ion-label position="stacked">Idade:*</ion-label>
+      <ion-range min="0" max="120" [pin]="true" [(ngModel)]="idade"></ion-range>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Altura:*</ion-label>
-      <ion-input name="altura" [(ngModel)]="altura" type="text"> </ion-input>
+      <ion-range min="0" max="230" [pin]="true" [(ngModel)]="altura"></ion-range>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Peso:*</ion-label>
-      <ion-input name="peso" [(ngModel)]="peso" type="text"> </ion-input>
+      <ion-range min="0" max="200" [pin]="true" [(ngModel)]="peso"></ion-range>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Triglicerídeos:*</ion-label>
-      <ion-input name="triglicerideos" [(ngModel)]="triglicerideos" type="text"> </ion-input>
+      <ion-range min="-174" max="711" [pin]="true" [(ngModel)]="triglicerideos"></ion-range>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Tempo Evolutivo:*</ion-label>
-      <ion-input name="tempoEvolutivo" [(ngModel)]="tempoEvolutivo" type="text"> </ion-input>
+      <ion-range min="-15.2" max="46.4" [pin]="true" [(ngModel)]="tempoEvolutivo"></ion-range>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Circunferência Abdominal:*</ion-label>
-      <ion-input name="circunferenciaAbdominal" [(ngModel)]="circunferenciaAbdominal" type="text"> </ion-input>
+      <ion-range min="45" max="153" [pin]="true" [(ngModel)]="circunferenciaAbdominal"></ion-range>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Renda:*</ion-label>
-      <ion-input name="renda" [(ngModel)]="renda" type="text"> </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Escolaridade:*</ion-label>
-      <ion-input name="escolaridade" [(ngModel)]="escolaridade" type="text"> </ion-input>
+      <ion-range min="-400" max="1200" [pin]="true" [(ngModel)]="renda"></ion-range>
     </ion-item>
   </ion-list>
   <br>

@@ -16,6 +16,14 @@ const routes: Routes = [
         path: 'realizar-lancamento',
         loadChildren: () => import('../realizar-lancamento/realizar-lancamento.module').then(m => m.RealizarLancamentoPageModule),
       },
+      {
+        path: 'resultado',
+        loadChildren: () => import('../resultado/resultado.module').then(m => m.ResultadoPageModule),
+      },
+      {
+        path: 'visualizar-historico',
+        loadChildren: () => import('../visualizar-historico/visualizar-historico.module').then(m => m.VisualizarHistoricoPageModule),
+      }
     ]
   },
 ];
