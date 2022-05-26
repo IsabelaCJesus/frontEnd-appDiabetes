@@ -46,6 +46,10 @@
       <ion-label position="stacked">Renda:*</ion-label>
       <ion-range min="-400" max="1200" [pin]="true" [(ngModel)]="renda"></ion-range>
     </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Escolaridade:*</ion-label>
+      <ion-range min="-7.5" max="22.5" [pin]="true" [(ngModel)]="escolaridade"></ion-range>
+    </ion-item>
   </ion-list>
   <br>
   <ion-button type="submit" color="success" (click)="calcularDiabetes()">Calcular</ion-button>

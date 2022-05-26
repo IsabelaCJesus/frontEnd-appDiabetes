@@ -19,6 +19,8 @@ export interface Dados {
   circunferenciaAbdominal: number;
   renda: number;
   escolaridade: number;
+  resultadoIntervencao: number;
+  resultadoComparativo: number;
 }
 
 @Injectable({
@@ -50,8 +52,6 @@ export class DataLancamentoService {
   getLancamentosByIdPaciente(id): Observable<Dados[]> {
     const lancamentoDocRef = query(collection(this.firestore, 'lancamentos'), where("idPaciente", "==", id));
     return collectionData(lancamentoDocRef,  { idField: 'id'}) as Observable<Dados[]>;
-
-    
   }
  
   addLancamento(lancamento: Dados) {
@@ -65,6 +65,7 @@ export class DataLancamentoService {
       idade: lancamento.idade, altura: lancamento.altura, peso: lancamento.peso, triglicerideos: 
       lancamento.triglicerideos, tempoEvolutivo: lancamento.tempoEvolutivo, circunferenciaAbdominal:
       lancamento.circunferenciaAbdominal, renda: lancamento.renda, escolaridade: lancamento.escolaridade,
+      resultadoIntervencao: lancamento.resultadoIntervencao, resultadoComparativo: lancamento.resultadoComparativo
     });
   }
 }

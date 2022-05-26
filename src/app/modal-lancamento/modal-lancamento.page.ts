@@ -21,7 +21,9 @@ export class ModalLancamentoPage implements OnInit {
     tempoEvolutivo: 0,
     circunferenciaAbdominal: 0,
     renda: 0,
-    escolaridade: 0
+    escolaridade: 0,
+    resultadoIntervencao: 0,
+    resultadoComparativo: 0
   };
  
   constructor(
