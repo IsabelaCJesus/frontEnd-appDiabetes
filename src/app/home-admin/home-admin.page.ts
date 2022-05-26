@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-admin',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeAdminPage implements OnInit {
 
-  constructor() { }
+  constructor( 
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
   }
 
+  async logout() {
+    await this.authService.logout();
+    this.router.navigateByUrl('/', { replaceUrl: true });
+  }
 }

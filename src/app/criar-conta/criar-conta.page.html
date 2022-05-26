@@ -6,7 +6,6 @@
     <ion-title>Criar conta</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-list>
     <ion-item>
@@ -18,7 +17,6 @@
       <ion-input name="coren" [(ngModel)]="coren" type="text"> </ion-input>
     </ion-item>
   </ion-list>
-
   <ion-button type="submit" expand="block" color="success" (click)="addAcount()">Criar conta</ion-button>
   <ion-button type="button" expand="block" color="danger"  [routerLink]="['/login']" routerDirection="forward"> Cancelar </ion-button>
 </ion-content>
