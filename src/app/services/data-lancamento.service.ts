@@ -8,7 +8,7 @@ import { first } from 'rxjs/operators';
 
 export interface Dados {
   id?: string;
-  data: Date;
+  data: string;
   idPaciente: string;
   coren: string,
   idade: number;

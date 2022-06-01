@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 export class RealizarLancamentoPage implements OnInit {
   idPaciente: string;
   coren: string;
-  data: Date;
+  data: string;
   idade: number;
   altura: number;
   peso: number;
@@ -28,7 +28,7 @@ export class RealizarLancamentoPage implements OnInit {
   paciente: string = "";
 
   dados: Dados = {
-    data: new Date(),
+    data: "",
     idPaciente: "",
     coren: "",
     idade: 0,
@@ -42,6 +42,9 @@ export class RealizarLancamentoPage implements OnInit {
     resultadoIntervencao: 0,
     resultadoComparativo: 0
   };
+
+  listaDadosPaciente: Dados[];
+  dadosPaciente: Dados;
 
   pacientes: Paciente[] = [];
 
@@ -59,7 +62,11 @@ export class RealizarLancamentoPage implements OnInit {
   }
 
   ngOnInit() {
-    this.data = new Date();
+    var dataAtual = new Date();
+    var dia = dataAtual.getDate();
+    var mes =  parseInt(dataAtual.getMonth().toString()) + 1;
+    var ano = dataAtual.getFullYear();
+    this.data = dia + "/" + mes + "/" + ano;
   }
 
   async calcularDiabetes() {
@@ -128,6 +135,42 @@ export class RealizarLancamentoPage implements OnInit {
     }
     
     return true;
+  }
+
+  buscarUltimoLancamento(paciente){
+    this.DataLancamentoService.getLancamentosByIdPaciente(paciente).subscribe(res => {
+      this.listaDadosPaciente = res;
+
+      var dataAtual = new Date();
+      var dia = dataAtual.getDate();
+      var mes =  parseInt(dataAtual.getMonth().toString()) + 1;
+      var ano = dataAtual.getFullYear();
+      var data = dia + "/" + mes + "/" + ano;
+
+      for (let x of this.listaDadosPaciente) {
+        var result;
+        if (x.data == data) {
+          result = x;
+        }
+
+        this.dadosPaciente = result;
+        this.data = result.data;
+        this.idPaciente = result.idPaciente;
+        this.coren = result.coren;
+        this.idade = result.idade;
+        this.altura = result.altura;
+        this.peso = result.peso;
+        this.triglicerideos = result.triglicerideos;
+        this.tempoEvolutivo = result.tempoEvolutivo;
+        this.circunferenciaAbdominal = result.circunferenciaAbdominal;
+        this.renda = result.renda;
+        this.escolaridade = result.escolaridade;
+        this.resultadoIntervencao = result.resultadoIntervencao;
+        this.resultadoComparativo = result.resultadoComparativo;
+      }
+
+      this.cd.detectChanges();
+    });
   }
 
   async showAlert(message) {

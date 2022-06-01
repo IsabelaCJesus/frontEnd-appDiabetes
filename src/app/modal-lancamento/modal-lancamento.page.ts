@@ -11,7 +11,7 @@ export class ModalLancamentoPage implements OnInit {
   @Input() id: string;
 
   lancamento: Dados = {
-    data: new Date(),
+    data: "",
     idPaciente: "",
     coren: "",
     idade: 0,
