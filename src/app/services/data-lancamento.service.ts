@@ -59,8 +59,13 @@ export class DataLancamentoService {
     return addDoc(lancamentoRef, lancamento);
   }
 
+  deleteLancamento(lancamento: Dados) {
+    const lancamentoRef = doc(this.firestore, `lancamentos/${lancamento.id}`);
+    return deleteDoc(lancamentoRef);
+  }
+
   updateLancamento(lancamento: Dados) {
-    const lancamentoDocRef = doc(this.firestore, `lancamento/${lancamento.id}`);
+    const lancamentoDocRef = doc(this.firestore, `lancamentos/${lancamento.id}`);
     return updateDoc(lancamentoDocRef, { idPaciente: lancamento.idPaciente, coren: lancamento.coren, 
       idade: lancamento.idade, altura: lancamento.altura, peso: lancamento.peso, triglicerideos: 
       lancamento.triglicerideos, tempoEvolutivo: lancamento.tempoEvolutivo, circunferenciaAbdominal:

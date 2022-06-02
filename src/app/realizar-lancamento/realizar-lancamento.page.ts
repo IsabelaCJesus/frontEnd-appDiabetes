@@ -88,16 +88,17 @@ export class RealizarLancamentoPage implements OnInit {
         resultadoComparativo: 0
       }
       
-    this.DataLancamentoService.calcularInterventionGroup(this.dados).subscribe(result =>
-      this.showAlert("Seu risco comparativo é: " + result)
-    );
-        
-    this.DataLancamentoService.calcularComparativeGroup(this.dados).subscribe(result =>
-      this.showAlert("Seu risco comparativo é: " + result)
-    );
- 
+      this.DataLancamentoService.calcularInterventionGroup(this.dados).subscribe(result =>
+        this.showAlert("Seu risco comparativo é: " + result)
+      );
+          
+      this.DataLancamentoService.calcularComparativeGroup(this.dados).subscribe(result =>
+        this.showAlert("Seu risco comparativo é: " + result)
+      );
+  
       this.DataLancamentoService.addLancamento(this.dados);
       this.router.navigateByUrl('/home/resultado', { replaceUrl: true });
+      
     }
   }
   

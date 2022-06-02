@@ -14,7 +14,7 @@
         <ion-select-option *ngFor="let paciente of pacientes" [value]="paciente.id" style="text-align: center">{{paciente.nome}}</ion-select-option>
       </ion-select>
     </ion-item>
-    <div *ngIf="dadosPaciente">
+  <!-- <div *ngIf="dadosPaciente">--> 
       <ion-item>
         <ion-label position="stacked">Coren:*</ion-label>
         <ion-input name="coren" [(ngModel)]="coren" type="text"> </ion-input>
@@ -51,7 +51,7 @@
         <ion-label position="stacked">Escolaridade:*</ion-label>
         <ion-range min="-7.5" max="22.5" [pin]="true" [(ngModel)]="escolaridade"></ion-range>
       </ion-item>
-    </div>
+  <!-- </div>--> 
   </ion-list>
   <br>
   <ion-button type="submit" color="success" (click)="calcularDiabetes()">Calcular</ion-button>

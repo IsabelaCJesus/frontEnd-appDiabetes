@@ -10,47 +10,41 @@ import { ModalController, ToastController } from '@ionic/angular';
 export class ModalLancamentoPage implements OnInit {
   @Input() id: string;
 
-  lancamento: Dados = {
-    data: "",
-    idPaciente: "",
-    coren: "",
-    idade: 0,
-    altura: 0,
-    peso: 0,
-    triglicerideos: 0,
-    tempoEvolutivo: 0,
-    circunferenciaAbdominal: 0,
-    renda: 0,
-    escolaridade: 0,
-    resultadoIntervencao: 0,
-    resultadoComparativo: 0
-  };
- 
+  lancamento: Dados = null;
+  dataAtual: string = "";
+
   constructor(
     private dataLancamentoService: DataLancamentoService, 
     private modalCtrl: ModalController, 
     private toastCtrl: ToastController,
     private cd: ChangeDetectorRef,
   ) 
-  {
-  }
+  { }
  
   ngOnInit() {
-  }
-
-  async preencheCampos(){
     this.dataLancamentoService.getLancamentoById(this.id).subscribe(res => {
       this.lancamento = res;
     }); 
+
+    var data = new Date();
+    var dia = data.getDate();
+    var mes =  parseInt(data.getMonth().toString()) + 1;
+    var ano = data.getFullYear();
+    this.dataAtual = dia + "/" + mes + "/" + ano;
   }
 
-  /*getEmpresaPessoa(id){
-    this.dataServiceEmpresa.getEmpresaById(id).subscribe(res => {
-      this.empresaPessoa = res;
+  async deletarLancamento() {
+    await this.dataLancamentoService.deleteLancamento(this.lancamento);
+    const toast = await this.toastCtrl.create({
+      message: 'Exclusão realizada com sucesso!',
+      duration: 2000
     });
-  }*/
-
-  async updatePessoa() {
+    toast.present();
+    this.modalCtrl.dismiss();
+  }
+ 
+  async atualizarLancamento() {
+    this.lancamento.data = this.dataAtual;
     await this.dataLancamentoService.updateLancamento(this.lancamento);
     const toast = await this.toastCtrl.create({
       message: 'Dados atualizados com sucesso!',
@@ -58,9 +52,5 @@ export class ModalLancamentoPage implements OnInit {
     });
     toast.present();
     this.modalCtrl.dismiss();
-  }
-
-  async cancelar(){
-    this.modalCtrl.dismiss();
-  }
+  } 
 }
